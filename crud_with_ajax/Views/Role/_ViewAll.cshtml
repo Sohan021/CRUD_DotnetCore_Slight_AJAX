@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using crud_with_ajax.Models
+@model List<Role>
+<div class="text-center">
+    @*<a onclick="showInPopup('@Url.Action("CreateOrUpdate", "City", null, Context.Request.Scheme)', 'New City')" class="btn btn-outline-primary">Add New???</a>*@
+    <a onclick="showInPopup('@Url.Action("CreateOrUpdate", "Role", null, Context.Request.Scheme)','New Role')" class="btn btn-outline-primary">Add New???</a>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-10">
+        <div>
+            <table class="table table-hover table-bordered" id="myTable">
+                <thead>
+                    <tr class="table-primary">
+                        <th class="text-center">Role Name</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@item.Name</td>
+                            <td class="text-center">
+                                <a onclick="showInPopup('@Url.Action("CreateOrUpdate","Role",new {id=item.Id},Context.Request.Scheme)','Update City')" class="btn btn-info text-white">Update</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                    <input type="hidden" asp-for="@item.Id" />
+                                    <input type="submit" value="Delete" class="btn btn-danger" />
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+</div>
+@*<script>
+    $(document).ready(function () {
+        $("#myTable").DataTable();
+    });</script>*@

@@ -1,0 +1,11 @@
+﻿@using crud_with_ajax.Models
+@model List<City>
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<h2 class="text-primary text-center">City</h2>
+<br />
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model)
+</div>
